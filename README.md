@@ -1,7 +1,7 @@
 # Recipe-Project
 Team: 
-Judy Li <zl2877@nyu.edu> 
-Shay Gyawali <sg5704@nyu.edu> 
+Judy Li <zl2877@nyu.edu> ,
+Shay Gyawali <sg5704@nyu.edu> ,
 Lemon Ruan <qr2010@nyu.edu> 
 
 Building software
