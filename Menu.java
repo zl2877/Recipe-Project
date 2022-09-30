@@ -12,7 +12,7 @@ public class Menu {
 		// TODO Auto-generated method stub
 Recipe newRecipe = new Recipe(n, d, ingredientList, in);
 			menu.add(newRecipe);
-			System.out.println("New menu added.");
+			System.out.println("New recipe added.");
 			
 	}
 
