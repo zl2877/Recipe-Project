@@ -111,9 +111,15 @@ public class main {
 				
 				
 			}else if (userChoice == 3){
-				System.out.println("Here are all the recipes!");
-				Collections.sort(recipeBook.container, new NameComparator());
-				recipeBook.displayAll();
+				if (recipeBook.container == null ||recipeBook.container.size() == 0){
+					System.out.println("You have nothing in your recipe book yet. Please add a recipe!");
+				}else{
+					System.out.println("Here are all the recipes!");
+					Collections.sort(recipeBook.container, new NameComparator());
+					recipeBook.displayAll();
+
+				}
+				
 				System.out.println("Press enter to continue");
 				scan.nextLine();
 			}
