@@ -13,26 +13,9 @@ public class main {
 		String recipeName;
 		String recipeDescription;//description
 		String recipeIng;//Ingredient list
-		String recipeInstruction;//instructions
-
-
+		String recipeInstruction;//instruction
 		
 		
-
-		
-		// Recipe newRec = new Recipe("Oranges", "description", new ArrayList<String>(List.of("Apple","watermelon")),new ArrayList<String>(List.of("pour water","cook")));
-		// Recipe newRec2 = new Recipe("Zebra", "description", new ArrayList<String>((List.of("Apple","watermelon"))),new ArrayList<String>(List.of("pour water","cook")));
-		// Recipe newRec1 = new Recipe("Account", "description", new ArrayList<String>((List.of("Apple","watermelon"))),new ArrayList<String>(List.of("pour water","cook")));
-		// Menu menu = new Menu();
-		// menu.Add(newRec2);
-		// menu.Add(newRec1);
-		// menu.Add(newRec);
-		
-		// Collections.sort(menu.container, new NameComparator());
-		// menu.displayAll();
-		
-		
-
 		//Welcome message 
 		
 		System.out.println("Welcome to the Recipe book!");
@@ -130,46 +113,6 @@ public class main {
 		}
 
 	
-		
-		
-		
-		
-				
-					
-
-// 			while(true) {
-// 					options();
-// 					int choice = sc.nextInt();
-					
-// 					//Option 1.	Add a house
-// 					if (choice == 1) {
-// 						System.out.println("Add a new recipe:");
-// 						System.out.print("Enter name: ");
-// 						n = sc.next();
-// 						System.out.print("Enter decription: ");
-// 						d = sc.next();
-// 						System.out.print("Enter ingredient list: ");
-// 						ing = sc.next();
-// 						System.out.print("Enter instructions: ");
-// 						ins = sc.next();
-// 						Menu a =new Menu();
-// 						//Using method from HouseInventory
-// 						a.Add(menu, n,d,ing,ins);
-						
-// 				}
-// 					//Option 3. Display all contact
-// 					else if (choice == 3) {
-// 						System.out.println("Display All");
-// 						System.out.println("Name\tDescription\tIngredients\tInstructions");
-// 						Collections.sort(menu, new NameComparator());;
-// 						for(Recipe recipe:menu) {
-// 							System.out.println(recipe.toString());
-// 						}
-						
-// 					}
-
-
-// }
 				
 	}
 
