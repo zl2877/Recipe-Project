@@ -46,7 +46,7 @@ public class main {
 					System.out.println("Please add one ingredient");
 					recipeIng= scan.nextLine();
 					ingredient.add(recipeIng);
-					System.out.println("Do you want to  continue to add ? Enter 0 to stop");
+					System.out.println("Enter any number to continue adding. Enter 0 to stop");
 					int answer =  Integer.parseInt(scan.nextLine());
 					if(answer == 0){
 						flag = false;
@@ -59,7 +59,7 @@ public class main {
 					System.out.println("Please add one instruction");
 					recipeInstruction= scan.nextLine();
 					instructions.add(recipeInstruction);
-					System.out.println("Do you want to  continue to add ? Enter 0 to stop");
+					System.out.println("Enter any number to continue adding. Enter 0 to stop");
 					int answer =  Integer.parseInt(scan.nextLine());
 					if(answer == 0){
 						in_flag = false;
@@ -112,8 +112,6 @@ public class main {
 
 		}
 
-	
-				
 	}
 
 	//Method for menu
