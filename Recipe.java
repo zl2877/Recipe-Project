@@ -1,16 +1,16 @@
 
 import java.util.Comparator;
 import java.util.*;
+import java.io.Serializable;
 
-public class Recipe{
+public class Recipe implements Serializable{
 	
 	
 	String name; //name
 	String description; //description
-	ArrayList<String>ingredientList; //Ingredient list
+	ArrayList<String> ingredientList; //Ingredient list
 	ArrayList<String> instructions; //instructions
 
-	
 	
 	//constructor
 	public Recipe(String n, String d, ArrayList<String> ingList, ArrayList<String> ins) {

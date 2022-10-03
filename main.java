@@ -4,8 +4,27 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
 import java.util.*;
-public class main {
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
+import java.io.OutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
+import java.io.IOException; 
+public class main extends ObjectOutputStream {
+
+	public main(OutputStream out) throws IOException {
+		super(out);
+	}
+
+	@Override
+	protected void writeStreamHeader() throws IOException {
+	  // do not write a header, but reset:
+	  // this line added after another question
+	  // showed a problem with the original
+	  reset();
+	}
 	public static void main(String[] args) 
 	{
 		
@@ -69,7 +88,9 @@ public class main {
 			
 				System.out.println("Great! Give us a moment...Creating your recipe...");
 				Recipe newR = new Recipe(recipeName, recipeDescription, ingredient, instructions);
-				recipeBook.container.add(newR);
+				recipeBook.addRecipe(newR);
+				//TODO: decide on how/when we wanna query all recipies and when to add newly created ones to the container
+				//recipeBook.container.add(newR);
 				System.out.println("Your recipe has been created and it has now been added to the recipe book!");
 				
 			}else if (userChoice == 2){
@@ -94,15 +115,34 @@ public class main {
 				
 				
 			}else if (userChoice == 3){
-				if (recipeBook.container == null ||recipeBook.container.size() == 0){
-					System.out.println("You have nothing in your recipe book yet. Please add a recipe!");
-				}else{
-					System.out.println("Here are all the recipes!");
+
+					try {
+						FileInputStream fis = new FileInputStream("recipes.dat");
+						ObjectInputStream ois = new ObjectInputStream(fis);
+						Object object = null;
+						while ((object = ois.readObject()) != null) { 
+							if (object instanceof Recipe) {
+								Recipe currRecipe = (Recipe) object;
+								recipeBook.container.add(currRecipe);
+								System.out.println("YASSSSSSS");  
+							}
+						} 
+						ois.close();
+					} catch (IOException e){
+						e.printStackTrace();
+					} catch (ClassNotFoundException fnfe){
+						System.out.println(fnfe.getMessage());  
+					}
+
+					if (recipeBook.container == null ||recipeBook.container.size() == 0){
+						System.out.println("You have nothing in your recipe book yet. Please add a recipe!");
+					}else{
+						System.out.println("Here are all the recipes!");
+
 					Collections.sort(recipeBook.container, new NameComparator());
 					recipeBook.displayAll();
 
 				}
-				
 				System.out.println("Press enter to continue");
 				scan.nextLine();
 			}
@@ -117,6 +157,7 @@ public class main {
 	//Method for menu
 	public static void displayOptions() {
 		System.out.println("=======================================");
+
 		System.out.println("Terminal Menu:");
 		System.out.println("Choose one of the following options: ");
 		System.out.println("(1) Add a new recipe.");
