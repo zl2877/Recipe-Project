@@ -4,27 +4,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
 import java.util.*;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.io.ObjectInputStream;
-import java.io.OutputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 import java.io.IOException; 
-public class main extends ObjectOutputStream {
+public class main{
 
-	public main(OutputStream out) throws IOException {
-		super(out);
-	}
-
-	@Override
-	protected void writeStreamHeader() throws IOException {
-	  // do not write a header, but reset:
-	  // this line added after another question
-	  // showed a problem with the original
-	  reset();
-	}
 	public static void main(String[] args) 
 	{
 		
@@ -116,23 +98,7 @@ public class main extends ObjectOutputStream {
 				
 			}else if (userChoice == 3){
 
-					try {
-						FileInputStream fis = new FileInputStream("recipes.dat");
-						ObjectInputStream ois = new ObjectInputStream(fis);
-						Object object = null;
-						while ((object = ois.readObject()) != null) { 
-							if (object instanceof Recipe) {
-								Recipe currRecipe = (Recipe) object;
-								recipeBook.container.add(currRecipe);
-								System.out.println("YASSSSSSS");  
-							}
-						} 
-						ois.close();
-					} catch (IOException e){
-						e.printStackTrace();
-					} catch (ClassNotFoundException fnfe){
-						System.out.println(fnfe.getMessage());  
-					}
+					//TODO: implement how to query/read-in recipes.txt
 
 					if (recipeBook.container == null ||recipeBook.container.size() == 0){
 						System.out.println("You have nothing in your recipe book yet. Please add a recipe!");

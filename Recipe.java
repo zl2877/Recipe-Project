@@ -3,7 +3,7 @@ import java.util.Comparator;
 import java.util.*;
 import java.io.Serializable;
 
-public class Recipe implements Serializable{
+public class Recipe {
 	
 	
 	String name; //name
