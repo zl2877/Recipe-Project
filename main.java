@@ -4,7 +4,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
 import java.util.*;
-public class main {
+import java.io.IOException; 
+public class main{
 
 	public static void main(String[] args) 
 	{
@@ -69,7 +70,9 @@ public class main {
 			
 				System.out.println("Great! Give us a moment...Creating your recipe...");
 				Recipe newR = new Recipe(recipeName, recipeDescription, ingredient, instructions);
-				recipeBook.container.add(newR);
+				recipeBook.addRecipe(newR);
+				//TODO: decide on how/when we wanna query all recipies and when to add newly created ones to the container
+				//recipeBook.container.add(newR);
 				System.out.println("Your recipe has been created and it has now been added to the recipe book!");
 				
 			}else if (userChoice == 2){
@@ -94,15 +97,18 @@ public class main {
 				
 				
 			}else if (userChoice == 3){
-				if (recipeBook.container == null ||recipeBook.container.size() == 0){
-					System.out.println("You have nothing in your recipe book yet. Please add a recipe!");
-				}else{
-					System.out.println("Here are all the recipes!");
+
+					//TODO: implement how to query/read-in recipes.txt
+
+					if (recipeBook.container == null ||recipeBook.container.size() == 0){
+						System.out.println("You have nothing in your recipe book yet. Please add a recipe!");
+					}else{
+						System.out.println("Here are all the recipes!");
+
 					Collections.sort(recipeBook.container, new NameComparator());
 					recipeBook.displayAll();
 
 				}
-				
 				System.out.println("Press enter to continue");
 				scan.nextLine();
 			}
@@ -117,6 +123,7 @@ public class main {
 	//Method for menu
 	public static void displayOptions() {
 		System.out.println("=======================================");
+
 		System.out.println("Terminal Menu:");
 		System.out.println("Choose one of the following options: ");
 		System.out.println("(1) Add a new recipe.");
