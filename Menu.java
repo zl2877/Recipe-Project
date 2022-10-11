@@ -3,7 +3,10 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.io.IOException;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 
 public class Menu {
@@ -20,7 +23,9 @@ public class Menu {
 		// TODO Auto-generated method stub
 		try{
 			FileWriter myWriter = new FileWriter("recipes.txt", true);
+			myWriter.write("Name: \n");
 			myWriter.write(newRecipe.name + "\n");
+			myWriter.write("description: \n");
 			myWriter.write(newRecipe.description + "\n");
 			myWriter.write("ingredients: \n");
 			for(String ingredient: newRecipe.ingredientList){
@@ -57,7 +62,9 @@ public class Menu {
 		}
 	}
 
+
 	
+
 
 	public Recipe findMatchingRecipe(String name){
 		if (this.container== null || this.container.size()==0){
@@ -74,5 +81,19 @@ public class Menu {
 
 	}
 
+
+
+	public static void viewStepByStep(String input) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public static void viewEntireRecipe(String input) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
+
+
