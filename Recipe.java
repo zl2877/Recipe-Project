@@ -84,6 +84,23 @@ public class Recipe {
 
 	}
 
+	public void displayName(){
+		System.out.println("Recipe Name: " + this.getName());
+	}
+
+	public void displayDescription(){
+		System.out.println("Recipe description: "+ this.getDescription());
+	}
+
+	public void displayIngredList(){
+		System.out.println("This is a list of ingredients");
+		this.printIngredientList();	
+	}
+
+	
+
+
+
 
 	
 

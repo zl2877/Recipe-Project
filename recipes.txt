@@ -53,3 +53,27 @@ DONT LET IT BOIL OVER it's so sad if that happens, if you dont wanna stir, just 
 strain milk to make sure all whole spices + tea is seperated or skip if you used bags
 serve warm! or do whatever you want to make it cold idc lol
 ======================
+
+
+
+Name: 
+Lemon cake
+description: 
+cake 
+ingredients: 
+lemon
+instructions: 
+by flout
+lemon
+======================
+Name: 
+Beef fried rice
+description: 
+rice made with beef
+ingredients: 
+rice
+instructions: 
+buy rice and beef
+cook beef with oil
+eat beef with rice
+======================

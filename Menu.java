@@ -83,13 +83,14 @@ public class Menu {
 
 
 
-	public static void viewStepByStep(String input) {
+	public void viewStepByStep(String input) {
 		// TODO Auto-generated method stub
+		
 		
 	}
 
 
-	public static void viewEntireRecipe(String input) {
+	public void viewEntireRecipe(String input) {
 		// TODO Auto-generated method stub
 		
 	}
