@@ -8,6 +8,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.Comparator;
+// import java.io.FileNotFoundException;
+
 
 public class Menu {
 	
@@ -23,15 +26,15 @@ public class Menu {
 		// TODO Auto-generated method stub
 		try{
 			FileWriter myWriter = new FileWriter("recipes.txt", true);
-			myWriter.write("Name: \n");
+			myWriter.write("Name:\n");
 			myWriter.write(newRecipe.name + "\n");
-			myWriter.write("description: \n");
+			myWriter.write("description:\n");
 			myWriter.write(newRecipe.description + "\n");
-			myWriter.write("ingredients: \n");
+			myWriter.write("ingredients:\n");
 			for(String ingredient: newRecipe.ingredientList){
 				myWriter.write(ingredient + "\n");
 			}
-			myWriter.write("instructions: \n");
+			myWriter.write("instructions:\n");
 			for(String instruction: newRecipe.instructions){
 				myWriter.write(instruction + "\n");
 			}
@@ -62,10 +65,6 @@ public class Menu {
 		}
 	}
 
-
-	
-
-
 	public Recipe findMatchingRecipe(String name){
 		if (this.container== null || this.container.size()==0){
 			return null;
@@ -78,14 +77,46 @@ public class Menu {
 		}
 
 		return null;
-
 	}
 
+	public void readInAllRecipes() throws FileNotFoundException{
+		//reading recipes from txt file, converting to recipe objects and adding all recipes to local menu object
+		Scanner recipeFile = new Scanner(new File("recipes.txt"));
+		while(recipeFile.hasNextLine()) {
+			String line = recipeFile.nextLine();
+			if(line.equals("Name:")){
+				String name;
+				String description;
+				ArrayList<String> ingredientList = new ArrayList<String>(); 				//Ingredient list
+				ArrayList<String> instructions = new ArrayList<String>();
 
+				name = recipeFile.nextLine();
+				name = name.toUpperCase();
+				recipeFile.nextLine();
+				description = recipeFile.nextLine();
+				recipeFile.nextLine();
+				String rest = recipeFile.nextLine();
+				while(!rest.equals("instructions:")){
+					ingredientList.add(rest);
+					rest = recipeFile.nextLine();
+				}
+				rest = recipeFile.nextLine();
+				while(!rest.equals("======================")){
+					instructions.add(rest);
+					rest = recipeFile.nextLine();
+				}
+
+				Recipe newRecipe = new Recipe(name, description, ingredientList, instructions);
+				container.add(newRecipe);
+			}
+		}	
+		
+		//sort the array
+		Collections.sort(container, Comparator.comparing(Recipe::getName));
+	}
 
 	public void viewStepByStep(String input) {
 		// TODO Auto-generated method stub
-		
 		
 	}
 

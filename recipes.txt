@@ -1,15 +1,18 @@
+Name:
 gordon ramsay's idiot sandwich
+description:
 from that one episode
-ingredients: 
+ingredients:
 two slices of bread
 your big ol head
-
-instructions: 
+instructions:
 grab your two pieces of bread
 hold on opposite sides of your head
 thats all. thats your idiot sandwich 🥳
 ======================
+Name:
 chicken marinade
+description:
 for all the chicken over rice lovers <3
 ingredients: 
 chicken cut up however you want, whatever part of the chicken
@@ -24,14 +27,16 @@ oregano
 garlic powder
 onion powder
 tumeric
-instructions: 
+instructions:
 stab your chicken with a fork so it can a b s o r b
 mix your marinade ingredients in a bowl (proportions are to taste)
 mix and smother into chicken 😏
 cover and let sit for 2 to ideally 8 hours
 cook however you prefer!
 ======================
+Name:
 mom's chai
+description:
 smells like home for some people, for others it's just a drink they like but either way this is how someone's mom would make it <3
 ingredients: 
 your choice of milk
@@ -42,7 +47,7 @@ pepper
 cinnamon
 sugar
 assam black tea (the ones in the red package are my go to)
-instructions: 
+instructions:
 add milk or milk+water into a pot and bring to a simmer
 add sugar and aromatics+spices
 let simmer until sugar's dissolved and mixture becomes aromatic
@@ -53,26 +58,23 @@ DONT LET IT BOIL OVER it's so sad if that happens, if you dont wanna stir, just 
 strain milk to make sure all whole spices + tea is seperated or skip if you used bags
 serve warm! or do whatever you want to make it cold idc lol
 ======================
-
-
-
-Name: 
+Name:
 Lemon cake
-description: 
+description:
 cake 
-ingredients: 
+ingredients:
 lemon
-instructions: 
+instructions:
 by flout
 lemon
 ======================
-Name: 
+Name:
 Beef fried rice
 description: 
 rice made with beef
-ingredients: 
+ingredients:
 rice
-instructions: 
+instructions:
 buy rice and beef
 cook beef with oil
 eat beef with rice

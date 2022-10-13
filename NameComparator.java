@@ -8,4 +8,4 @@ class NameComparator implements Comparator<Recipe>{
 
 	return s1.name.compareTo(s2.name);  
 	}  
-	}  
+}  

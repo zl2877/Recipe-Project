@@ -4,6 +4,7 @@ import java.util.ArrayList;
 // import java.util.Collections;
 // import java.util.Comparator;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 // import java.io.FileNotFoundException;
 
 
@@ -11,14 +12,16 @@ public class main {
 
 	//Method for menu
 	public static void displayOptions() {
-		System.out.println("=======================================");
-
-		System.out.println("Terminal Menu:");
-		System.out.println("Choose one of the following options: ");
-		System.out.println("(1) Add a new recipe.");
-		System.out.println("(2) Search a recipe.");
-		System.out.println("(3) See all recipe.");
-		System.out.println("If you wish to exit the menu, please enter -1");
+		System.out.print("\033[H\033[2J");
+		//Welcome message
+		System.out.println("Welcome to the Kitchen Nightmare Recipe Book!");
+		System.out.println("Main Menu");
+		System.out.println("===========================================");
+		System.out.println("You can choose from any of the following: ");
+		System.out.println("(1) 😤 Add a new recipe");
+		System.out.println("(2) 🧐 Search a recipe");
+		System.out.println("(3) 🥺 See all recipes");
+		System.out.println(" ⚠️ If you wish to exit the menu at any point, please enter -1 ⚠️");
 		System.out.print("Enter your choice: ");
 	}
 
@@ -66,82 +69,89 @@ public class main {
 	}
 
 	public static void displayRecipes(Scanner scan, Menu recipeBook) throws FileNotFoundException {
-		File fileName = new File("recipes.txt");
-		if (!fileName.exists()) {
-			System.out.println("Recipe book doesn't yet exist, you need to create a recipe first.");
-			return;
+		int i;
+		System.out.print("\033[H\033[2J");
+		System.out.println("Here's the recipe book in full: ");
+
+
+		for(i = 0; i < recipeBook.container.size(); i++){
+			viewEntireRecipe(scan, recipeBook, recipeBook.container.get(i));
 		}
 
-		System.out.println("Here are the recipes");
-		Scanner recipeFile = new Scanner(new File("recipes.txt"));
-		//print out all the recipes
-		while(recipeFile.hasNextLine()) {
-			System.out.println(recipeFile.nextLine());
-		}
-		//Ask which way to view
-		System.out.println("Do you want to view ? (enter any number to continue. -1 to exit) ");
-		int answer = Integer.parseInt(scan.nextLine());
-		if(answer == -1){
-			return;
-		}else{
-			viewRecipe(scan, recipeBook);
-		}
+		System.out.println("Press Enter to return to Main Menu!");
+		scan.nextLine();
 		
 	}
 
-	public static void viewEntireRecipe(Menu recipeBook, String recipeOption) {
-		int size = recipeBook.container.size();
-		if (size > 0){
-			for(int i = 0; i < size; i++){
-				String name = recipeBook.container.get(i).getName();
-				if(name.equals(recipeOption)){
-					recipeBook.container.get(i).displayOne();
-					break;
-				}
+	public static void viewEntireRecipe(Scanner scan, Menu recipeBook, Recipe recipe) {
 
-			}
+		System.out.println("-----------------------------------------------------");
+		System.out.println(recipe.name + " | " + recipe.description);
+		System.out.println("-----------------------------------------------------");
+		System.out.println(" ");
+
+		System.out.println("Ingredients: ");
+		int i;
+		for(i=0; i<recipe.ingredientList.size(); i++){
+			System.out.println("➡️ " + recipe.ingredientList.get(i));
+		}
+
+		System.out.println(" ");
+		System.out.println("Instructions: ");
+		for(i=0; i<recipe.instructions.size(); i++){
+			System.out.println((i+1) + ". " + recipe.instructions.get(i));
+		}
+		System.out.println(" ");
+		System.out.println("Press Enter to return to Main Menu!");
+		scan.nextLine();
+	}
+
+	public static void viewStepByStepRecipe(Scanner scan, Menu recipeBook, Recipe recipe) {
+		System.out.println("-----------------------------------------------------");
+		System.out.println(recipe.name + " | " + recipe.description);
+		System.out.println("-----------------------------------------------------");
+		System.out.println(" ");
+
+		System.out.println("Ingredients: ");
+		int i;
+		for(i=0; i<recipe.ingredientList.size(); i++){
+			System.out.println("➡️ " + recipe.ingredientList.get(i));
+		}
+		System.out.println(" ");
+
+
+		System.out.println("Press enter until done!");
+		for(int j = 0; j < recipe.instructions.size(); j++){
+			System.out.println((j+1) + ". " + recipe.instructions.get(j));
+			scan.nextLine();
 		}
 	}
 
-	public static void viewStepByStepRecipe(Scanner scan, Menu recipeBook, String recipeOption) {
-		int size = recipeBook.container.size();
-		for(int i = 0; i < size; i++){
-			Recipe item = recipeBook.container.get(i);
-			String name = item.getName();
-			System.out.println("Viewing " + item.name);
-			if(name.equals(recipeOption)) {
-				for(int j = 0; j < item.instructions.size(); j++){
-					System.out.println(item.instructions.get(j));
-					System.out.println("View next step ? (Enter any number to continue. 0 break)");
-					int answer = Integer.parseInt(scan.nextLine());
-					if(answer == 0) {
-						System.out.println("Bye");
-						break;
-					}
-				}
-			}
+	public static void viewRecipe(Scanner scan, Menu recipeBook, Recipe recipe) {
+		System.out.print("\033[H\033[2J");
+		System.out.println("------------------------------------------");
+		System.out.println("You chose: " + recipe.name);
+		System.out.println("How would you like to view this recipe: ");
+		System.out.println("(1) In full ");
+		System.out.println("(2) Step by step");
+		System.out.println("Please enter your choice: ");
+
+		int viewChoice = Integer.parseInt(scan.nextLine());
+
+		if(viewChoice == -1){
+			scan.close();
+			System.out.println("Thank you for using the recipe book. Goodbye!");
+			System.exit(0);
+		} else if(viewChoice == 1){
+			System.out.print("\033[H\033[2J");
+			System.out.println("Here's your full recipe: ");
+			viewEntireRecipe(scan, recipeBook, recipe);
+		} else if(viewChoice == 2){
+			viewStepByStepRecipe(scan, recipeBook, recipe);
 		}
 	}
 
-	public static void viewRecipe(Scanner scan, Menu recipeBook) {
-		System.out.println("Enter the name of the recipe that you want to see");
-		String recipeOption = scan.nextLine();
-		System.out.println("We want to see" + recipeOption);
-		System.out.println("How would you like to view this recipe?");
-		System.out.println("Option 1: View entire recipe");
-		System.out.println("Option 2: View one step at a time");
-		System.out.println("Enter 1 or 2");
-
-		int viewOption = Integer.parseInt(scan.nextLine());
-		if (viewOption == 1) {
-			viewEntireRecipe(recipeBook, recipeOption);
-		}
-		if (viewOption == 2) {
-			viewStepByStepRecipe(scan, recipeBook, recipeOption);
-		}
-	}
-
-	public static void searchRecipes(Scanner scan, Menu recipeBook) throws IOException {
+	public static void searchRecipes(Scanner scan, Menu recipeBook) throws IOException{
 		//check if recipe.txt exists
 		File fileName = new File("recipes.txt");
 		if (!fileName.exists()) {
@@ -149,51 +159,122 @@ public class main {
 			return;
 		}
 
+		int searchChoice;
+
 		//if exists then the user can search
-		System.out.println("Please enter a recipe keyword to search");
-		String recipeToFind = scan.nextLine();
-		String[] words;
-		FileReader fr = new FileReader(fileName);  //Creation of File Reader object
-		BufferedReader br = new BufferedReader(fr);
-		String s;
-		int count=0;   //Intialize the word to zero
-		while((s=br.readLine())!=null) {  //Reading Content from the file
-			words=s.split(" ");
-			for (String word : words) {
-				if (word.equals(recipeToFind)) { //Search for the recipe
-					System.out.println(s);
-					count++;    //count number of times present
+		System.out.print("\033[H\033[2J");
+		System.out.println("------------------------------------------");
+		System.out.println("🍳 Okay chef! Do you wanna find your recipe by: ");
+		System.out.println("(1) Viewing all titles");
+		System.out.println("(2) Searching by keyword");
+		System.out.print("Enter your choice: ");
+
+		Scanner scanSearchOptions = new Scanner(System.in);
+		searchChoice =  Integer.parseInt(scanSearchOptions.nextLine());
+
+		//display search options based on user input
+		if(searchChoice == -1){
+			scan.close();
+			System.out.println("Thank you for using the recipe book. Goodbye!");
+			System.exit(0);
+		} 
+		else if(searchChoice == 1){
+			int menuSearchStatus = -2;
+			while(menuSearchStatus < 0){
+				System.out.print("\033[H\033[2J");
+				if(menuSearchStatus == -1){
+					System.out.println("⚠️ Invalid choice");
+				}
+				System.out.println("------------------------------------------");
+				System.out.println("All available recipes: ");
+				int i;
+				for(i=0; i < recipeBook.container.size(); i++){
+					System.out.print("(" + (i+1) + ") " + recipeBook.container.get(i).name);
+					System.out.println(" | " + recipeBook.container.get(i).description);
+				}
+				System.out.println("Please enter the number of the recipe you would like to view: ");
+				int requestedRecipe = Integer.parseInt(scanSearchOptions.nextLine());
+				if(requestedRecipe == -1){
+					scan.close();
+					System.out.println("Thank you for using the recipe book. Goodbye!");
+					System.exit(0);
+				} else if(requestedRecipe > recipeBook.container.size() || requestedRecipe == 0){
+					menuSearchStatus = -1;
+				} else {
+					menuSearchStatus = 4;
+					viewRecipe(scan, recipeBook, recipeBook.container.get(requestedRecipe-1));
+				}
+			}
+
+				
+		} 
+		else if(searchChoice == 2){
+			// TO SEARCH RECIPE BY KEYWORD
+			int keySearchStatus = -2;
+
+			while(keySearchStatus == -2){
+				System.out.println("Please enter a recipe keyword to search:");
+				String recipeToFind = scan.nextLine();
+				recipeToFind = recipeToFind.toUpperCase();
+				ArrayList<Recipe> foundRecipes = new ArrayList<Recipe>();
+
+				int i;
+
+				for(i=0; i<recipeBook.container.size(); i++){
+					if(recipeBook.container.get(i).name.contains(recipeToFind)){
+						foundRecipes.add(recipeBook.container.get(i));
+					}
+				}
+
+				int innerSearchStatus = -2;
+
+				while(innerSearchStatus < 0){
+					System.out.print("\033[H\033[2J");
+					if(innerSearchStatus == -1){
+						System.out.println("⚠️ Invalid choice, here are your previous search results: ");
+					}
+					if(foundRecipes.size() > 0){
+						System.out.println("You looked up: " + recipeToFind);
+						System.out.println("The following recipes contained your search: ");
+						for(i=0; i<foundRecipes.size(); i++){
+							System.out.println("(" + (i+1) + ") " + foundRecipes.get(i).name);
+						}
+					} else {
+						System.out.print("\033[H\033[2J");
+						System.out.println("No matches found containing your search ☹️");
+						keySearchStatus = -2;
+						System.out.println("Taking you back to the main menu...");
+						break;
+					}
+
+					System.out.println("Enter the number of the recipe you want to view, or 0 to search again: ");
+					int recipeToView = Integer.parseInt(scan.nextLine());
+					if(recipeToView == -1){
+						scan.close();
+						System.out.println("Thank you for using the recipe book. Goodbye!");
+						System.exit(0);
+					}
+					if(recipeToView == 0){
+						continue;
+					} else if(recipeToView > 0){
+						if(recipeToView > foundRecipes.size()){
+							innerSearchStatus = -1;
+						} else {
+							innerSearchStatus = 4;
+							keySearchStatus = 4;
+							viewRecipe(scan, recipeBook, foundRecipes.get(recipeToView-1));
+						}
+					}
 				}
 			}
 		}
-		System.out.println(count);
-		System.out.println();
-
-		if (count < 1) {
-			System.out.println("The recipe does not yet exist");
-			return;
-		}
-
-		System.out.println( count + " recipes came up matching the term you entered");
-		System.out.println("View recipe ? Enter any number to continue. -1 to break");
-
-		int answer = Integer.parseInt(scan.nextLine());
-		if(answer == -1){
-			return;
-		}else{
-			viewRecipe(scan, recipeBook);
-		}
-		//Ask which way to view
-		// viewRecipe(scan, recipeBook);
 	}
 
 	public static void main(String[] args) throws IOException {
 
 		Scanner scan = new Scanner(System.in);
 		Menu recipeBook = new Menu();
-
-		//Welcome message 
-		System.out.println("Welcome to the Recipe book!");
+		recipeBook.readInAllRecipes();
 
 		int userChoice = -2;
 		while(true){
