@@ -81,3 +81,14 @@ buy rice and beef
 cook beef with oil
 eat beef with rice
 ======================
+Name:
+Chicken over rice
+description:
+rice with chicken over it
+ingredients:
+chicken
+rice
+instructions:
+cook chicken with oil
+cook rice till cooked
+======================

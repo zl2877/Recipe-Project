@@ -102,7 +102,7 @@ public class Main {
 			System.out.println((i+1) + ". " + recipe.instructions.get(i));
 		}
 		System.out.println(" ");
-		System.out.println("Press Enter to return to Main Menu!");
+		System.out.println("Press Enter to view next recipe!");
 		scan.nextLine();
 	}
 
@@ -211,7 +211,8 @@ public class Main {
 		else if(searchChoice == 2){
 			// TO SEARCH RECIPE BY KEYWORD
 			int keySearchStatus = -2;
-
+			
+			keySearchLoop:
 			while(keySearchStatus == -2){
 				System.out.println("Please enter a recipe keyword to search:");
 				String recipeToFind = scan.nextLine();
@@ -255,7 +256,7 @@ public class Main {
 						System.exit(0);
 					}
 					if(recipeToView == 0){
-						continue;
+						continue keySearchLoop;
 					} else if(recipeToView > 0){
 						if(recipeToView > foundRecipes.size()){
 							innerSearchStatus = -1;
