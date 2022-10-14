@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 // import java.io.FileNotFoundException;
 
 
-public class main {
+public class Main {
 
 	//Method for menu
 	public static void displayOptions() {

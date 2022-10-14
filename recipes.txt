@@ -65,8 +65,10 @@ cake
 ingredients:
 lemon
 instructions:
-by flout
-lemon
+Buy lemon powder
+Buy flour
+Mix lemon powder with flour 
+Put in oven
 ======================
 Name:
 Beef fried rice

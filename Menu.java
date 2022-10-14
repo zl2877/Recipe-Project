@@ -115,16 +115,7 @@ public class Menu {
 		Collections.sort(container, Comparator.comparing(Recipe::getName));
 	}
 
-	public void viewStepByStep(String input) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	public void viewEntireRecipe(String input) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 }
 
